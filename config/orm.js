@@ -19,9 +19,11 @@ var orm = {
         connection.query(query, [table], function(err,result){
             if(err) {
                 throw err;
-                cb(result) 
             }
-            // console.log(query)
+                cb(result)
+                console.log("console log result in orm.js", result);
+                 
+            // }
             console.log("result in orm.js:", result);
         })
     },
@@ -30,8 +32,8 @@ var orm = {
         connection.query(query, [table, column],function(err,result){
             if(err) {
                 throw err;
-                cb(result)
             }
+            cb(result)
             console.log(result)
         })
     }, 
@@ -40,8 +42,8 @@ var orm = {
         connection.query(query, [table, id], function(err, result){
             if(err) {
                 throw err;
-                cb(result)
             }
+            cb(result)
             console.log(result)
         })
     }

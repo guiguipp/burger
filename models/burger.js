@@ -13,6 +13,8 @@ const burger = {
   },
   selectAll: function(cb) {
     orm.selectAll("burgers", function(res){
+      console.log("console.log res in burger.js", res);
+      
       console.log("it this processed too?");
       cb(res);  
     })
