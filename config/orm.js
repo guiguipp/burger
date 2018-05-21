@@ -8,8 +8,8 @@ var orm = {
         connection.query(query, [table,column], function(err, result){
         if (err) {
         throw err;
-        cb(result)
         }
+        cb(result)
         // console.log(data);
         // cb(data)
     });
@@ -21,10 +21,10 @@ var orm = {
                 throw err;
             }
                 cb(result)
-                console.log("console log result in orm.js", result);
+                // console.log("console log result in orm.js", result);
                  
             // }
-            console.log("result in orm.js:", result);
+            // console.log("result in orm.js:", result);
         })
     },
     deleteOne: function(table,column,cb){

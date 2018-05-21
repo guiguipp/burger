@@ -10,20 +10,27 @@ router.get("/", function(req, res) {
       var hbsObject = {
         burgers: data
       };
-      // console.log("This is hbsObject:", hbsObject);
+      console.log("This is hbsObject:", hbsObject);
       res.render("index", hbsObject);
     });
 
   });
   
 router.post("/api/burgers", function(req, res) {
-  burger.insertOne([
-    "name", "devoured"
-  ], [
-    req.body.name, req.body.devoured
-  ], function(result) {
-    // Send back the ID of the new quote
+  console.log("Inserting...");
+  console.log("\nReq.body.name: \n", req.body.name);
+  burger.insertOne(req.body.name, function(result) {
+    console.log("\nresult\n", result);
+    console.log("****************")
+    console.log("\nresult.insertId\n", result.insertId);
+    console.log("****************")
+    
+    // Send back the ID of the new burger
     res.json({ id: result.insertId });
+    console.log("****************")
+    // console.log(res.json({ id: result.insertId }));
+    console.log("****************")
+    
   });
 });
 
