@@ -8,9 +8,6 @@ const burger = {
   },
   updateOne: function(value, condition, cb) {
     orm.updateOne("burgers", value, condition, function(res) {
-      // console.log("\n************\n");
-      // console.log(`Burger.js => value: ${value} condition: ${condition}`);
-      // console.log("\n************\n");
       cb(res);
     });
   },

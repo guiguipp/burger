@@ -34,13 +34,10 @@ var orm = {
     updateOne: function(table, bool, id, cb){
         let query= "UPDATE ?? SET devoured=? WHERE id=?";
         connection.query(query, [table, bool, id], function(err, result){
-            // console.log("query in orm.js: ", query);
-            // console.log("objColVal in orm.js: ", objColVal, "should just be 'true'");
             if(err) {
                 throw err;
             }
             cb(result)
-            // console.log("result in orm.js: ", result)
         })
     }
     };
