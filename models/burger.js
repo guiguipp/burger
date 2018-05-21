@@ -6,17 +6,17 @@ const burger = {
       cb(res);
     });
   },
-  updateOne: function(condition, cb) {
-    orm.updateOne("burgers", condition, function(res) {
+  updateOne: function(value, condition, cb) {
+    orm.updateOne("burgers", value, condition, function(res) {
+      // console.log("\n************\n");
+      // console.log(`Burger.js => value: ${value} condition: ${condition}`);
+      // console.log("\n************\n");
       cb(res);
     });
   },
   selectAll: function(cb) {
     orm.selectAll("burgers", function(res){
-      console.log("console.log res in burger.js", res);
-      
-      console.log("it this processed too?");
-      cb(res);  
+    cb(res);  
     })
   },
   deleteOne: function(condition, cb) {

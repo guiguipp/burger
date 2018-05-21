@@ -25,17 +25,19 @@ $(function() {
     // change state to devoured
     $(".change-state").on("click", function(event) {
         var id = $(this).data("id");
-        var newStatus = $(this).data("data-devoured");
+        var status = $(this).data("status");
+        console.log("status: ", status);
         var newState = {
         devoured: true
-        };
+        };        
     
     $.ajax("/api/burger/" + id, {
         type: "PUT",
         data: newState
         }).then(
         function() {
-        console.log("changed devoured state to", newStatus);
+            console.log("changed devoured to: ",newState);
+            
         // Reload the page to get the updated list
         location.reload();
         }

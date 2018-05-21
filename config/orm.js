@@ -10,8 +10,6 @@ var orm = {
         throw err;
         }
         cb(result)
-        // console.log(data);
-        // cb(data)
     });
     },
     selectAll: function(table, cb) {
@@ -19,12 +17,8 @@ var orm = {
         connection.query(query, [table], function(err,result){
             if(err) {
                 throw err;
-            }
-                cb(result)
-                // console.log("console log result in orm.js", result);
-                 
-            // }
-            // console.log("result in orm.js:", result);
+                }
+            cb(result)
         })
     },
     deleteOne: function(table,column,cb){
@@ -32,19 +26,21 @@ var orm = {
         connection.query(query, [table, column],function(err,result){
             if(err) {
                 throw err;
-            }
+                }
             cb(result)
             console.log(result)
         })
     }, 
-    updateOne: function(table, id, cb){
-        let query= "UPDATE ?? SET devoured= true WHERE id=?"
-        connection.query(query, [table, id], function(err, result){
+    updateOne: function(table, bool, id, cb){
+        let query= "UPDATE ?? SET devoured=? WHERE id=?";
+        connection.query(query, [table, bool, id], function(err, result){
+            // console.log("query in orm.js: ", query);
+            // console.log("objColVal in orm.js: ", objColVal, "should just be 'true'");
             if(err) {
                 throw err;
             }
             cb(result)
-            console.log(result)
+            // console.log("result in orm.js: ", result)
         })
     }
     };
