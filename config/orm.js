@@ -3,7 +3,7 @@ const connection = require("./connection.js");
 
 // Object for all our SQL statement functions.
 var orm = {
-    create: function(table, column) {
+    insertOne: function(table, column, cb) {
     let query = "INSERT INTO ?? SET name=?";
         connection.query(query, [table,column], function(err, result){
         if (err) {
@@ -14,17 +14,18 @@ var orm = {
         // cb(data)
     });
     },
-    show: function(table) {
+    selectAll: function(table, cb) {
         let query = "SELECT * FROM ??";
         connection.query(query, [table], function(err,result){
             if(err) {
                 throw err;
                 cb(result) 
             }
-            console.log(result);
+            // console.log(query)
+            console.log("result in orm.js:", result);
         })
     },
-    delete: function(table,column){
+    deleteOne: function(table,column,cb){
         let query= "DELETE FROM ?? WHERE id=?";
         connection.query(query, [table, column],function(err,result){
             if(err) {
@@ -33,24 +34,21 @@ var orm = {
             }
             console.log(result)
         })
-    }
-    /*,delete: function(table, condition, cb) {
-    var queryString = "DELETE FROM " + table;
-    queryString += " WHERE ";
-    queryString += condition;
-    
-    connection.query(queryString, function(err, result) {
-        if (err) {
-            throw err;
+    }, 
+    updateOne: function(table, id, cb){
+        let query= "UPDATE ?? SET devoured= true WHERE id=?"
+        connection.query(query, [table, id], function(err, result){
+            if(err) {
+                throw err;
+                cb(result)
             }
-        cb(result);
-    });
-    }*/
+            console.log(result)
+        })
+    }
     };
-
-// orm.create("burgers","Another Test With CallBack")
-orm.delete("burgers","2")
-orm.show("burgers")
-
+// orm.insertOne("burgers","Jucy Lucy")
+// orm.updateOne("burgers","12")
+// orm.deleteOne("burgers","11")
+// orm.selectAll("burgers")
 module.exports = orm;
 
